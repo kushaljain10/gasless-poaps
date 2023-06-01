@@ -18,9 +18,9 @@ export const mint = async (walletAddress: string) => {
     const metaplex = Metaplex.make(connection).use(keypairIdentity(keypair));
 
     const transactionBuilder = await metaplex.nfts().builders().create({
-        uri: "https://res.cloudinary.com/dtzqgftjk/raw/upload/v1678791227/vietnam-hh-metadata_ib5t3e.json", // replace with with solana NFT standard compatible JSON file
-        name: "Solana HH Attendance Token", //name of your NFT
-        symbol: "HH", //symbol of your NFT
+        uri: "https://res.cloudinary.com/dnjbui12k/raw/upload/v1685616635/the_lollypop_metadata_ymu8vl.json", // replace with with solana NFT standard compatible JSON file
+        name: "Lollypop Galaxy",
+        symbol: "LG",
         sellerFeeBasisPoints: 0,
         useNewMint: mint,
         tokenOwner: user,
