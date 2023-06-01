@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "dev": "nodemon dist/index.js",
+    "start": "node dist/index.js"
+  },
   "dependencies": {
     "@metaplex-foundation/js": "^0.19.4",
     "bs58": "^5.0.0",
