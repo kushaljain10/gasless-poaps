@@ -1,7 +1,7 @@
 {
-  "name": "gasless-poaps",
+  "name": "zoworld-gasless-poaps",
   "version": "1.0.0",
-  "description": "Create minting QR Codes for gasless POAPs/NFTs on the Solana blockchain! follow these simple steps to get started,",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsup",
