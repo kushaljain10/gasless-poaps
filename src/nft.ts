@@ -39,9 +39,12 @@ export const mint = async (walletAddress: string, poap: PoapKeys) => {
     const metaplex = Metaplex.make(connection).use(keypairIdentity(keypair));
 
     const transactionBuilder = await metaplex.nfts().builders().create({
-        uri: poaps[poap].uri,
-        name: poaps[poap].name,
-        symbol: poaps[poap].symbol,
+        // uri: poaps[poap].uri,
+        // name: poaps[poap].name,
+        // symbol: poaps[poap].symbol,
+        'uri': "https://res.cloudinary.com/dnjbui12k/raw/upload/v1685797736/yoga_sdqjqm.json",
+      'name': "Yoga @ BLRxZo",
+      'symbol': "YOGA",
         sellerFeeBasisPoints: 0,
         useNewMint: mint,
         tokenOwner: user,
