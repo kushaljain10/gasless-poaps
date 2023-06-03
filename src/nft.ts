@@ -40,8 +40,8 @@ export const mint = async (walletAddress: string, poap: PoapKeys) => {
 
     const transactionBuilder = await metaplex.nfts().builders().create({
         uri: poaps[poap].uri,
-        name: poaps[poap].uri,
-        symbol: poaps[poap].uri,
+        name: poaps[poap].name,
+        symbol: poaps[poap].symbol,
         sellerFeeBasisPoints: 0,
         useNewMint: mint,
         tokenOwner: user,
