@@ -43,8 +43,8 @@ app.all(
   ) => {
     function get(res: Response<MakeTransactionGetResponse>) {
       res.status(200).json({
-        label: "Gasless POAP", // replace with your title
-        icon: "https://res.cloudinary.com/dtzqgftjk/image/upload/v1669972940/2_cdaoyi_1_somgup.png", // replace with your image link
+        label: "Zo World POAPs", 
+        icon: "https://res.cloudinary.com/dnjbui12k/image/upload/v1685694169/Zo_Orange_Logo_hodhh6.png",
       });
     }
 
@@ -64,7 +64,7 @@ app.all(
 
         return res.status(200).json({
           transaction: base64,
-          message: "powered by CandyPay",
+          message: "powered by Zo World",
         });
       } catch (err) {
         console.error(err);

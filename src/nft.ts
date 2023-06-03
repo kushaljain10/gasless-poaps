@@ -18,9 +18,9 @@ export const mint = async (walletAddress: string) => {
     const metaplex = Metaplex.make(connection).use(keypairIdentity(keypair));
 
     const transactionBuilder = await metaplex.nfts().builders().create({
-        uri: "https://res.cloudinary.com/dnjbui12k/raw/upload/v1685618330/the_lollypop_metadata_mb7j7t.json",
-        name: "Lollypop Galaxy",
-        symbol: "LG",
+        uri: "https://res.cloudinary.com/dnjbui12k/raw/upload/v1685797736/yoga_sdqjqm.json",
+        name: "Yoga @ BLRxZo",
+        symbol: "YOGA",
         sellerFeeBasisPoints: 0,
         useNewMint: mint,
         tokenOwner: user,
