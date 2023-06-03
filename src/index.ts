@@ -26,6 +26,14 @@ type ErrorOutput = {
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 app.all(
   "/:poap",
   async (
@@ -35,7 +43,7 @@ app.all(
     >
   ) => {
     let poap = req.params.poap;
-    
+
     function get(res: Response<MakeTransactionGetResponse>) {
       res.status(200).json({
         label: "Zo World POAPs", 
@@ -76,14 +84,6 @@ app.all(
       return res.status(405).json({ error: "Method not allowed" });
     }
   }
-);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: "*",
-  })
 );
 
 const port = process.env.PORT || 3000;

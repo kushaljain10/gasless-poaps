@@ -27,6 +27,7 @@ interface Poap {
   }
 
 export const mint = async (walletAddress: string, poap: PoapKeys) => {
+    console.log(poap);
     const connection = new anchor.web3.Connection(
         "https://solana-mainnet.rpc.extrnode.com"  // replace with your RPC
     );
@@ -39,12 +40,9 @@ export const mint = async (walletAddress: string, poap: PoapKeys) => {
     const metaplex = Metaplex.make(connection).use(keypairIdentity(keypair));
 
     const transactionBuilder = await metaplex.nfts().builders().create({
-        // uri: poaps[poap].uri,
-        // name: poaps[poap].name,
-        // symbol: poaps[poap].symbol,
-        'uri': "https://res.cloudinary.com/dnjbui12k/raw/upload/v1685797736/yoga_sdqjqm.json",
-      'name': "Yoga @ BLRxZo",
-      'symbol': "YOGA",
+        uri: poaps[poap].uri,
+        name: poaps[poap].name,
+        symbol: poaps[poap].symbol,
         sellerFeeBasisPoints: 0,
         useNewMint: mint,
         tokenOwner: user,
