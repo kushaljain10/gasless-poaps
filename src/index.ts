@@ -1,18 +1,82 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Request } from "express";
-// import { mint } from "./nft";
-import { spawn } from 'child_process';
+import express, { Request, Response } from "express";
+import { mint, PoapKeys } from "./nft";
+// import { spawn } from 'child_process';
 
 dotenv.config();
 
+type MakeTransactionInputData = {
+  account: string;
+};
+
+type MakeTransactionGetResponse = {
+  label: string;
+  icon: string;
+};
+
+type MakeTransactionOutputData = {
+  transaction: string;
+  message: string;
+};
+
+type ErrorOutput = {
+  error: string;
+};
+
 const app = express();
 
-app.get('/:script', (req: Request) => {
-  const scriptName = req.params.script;
+app.get('/:poap', (req: Request) => {
+  let poap = req.params.poap;
+  app.all(
+    "/",
+    async (
+      req: Request,
+      res: Response<
+        MakeTransactionGetResponse | MakeTransactionOutputData | ErrorOutput
+      >
+    ) => {
+      function get(res: Response<MakeTransactionGetResponse>) {
+        res.status(200).json({
+          label: "Zo World POAPs", 
+          icon: "https://res.cloudinary.com/dnjbui12k/image/upload/v1685694169/Zo_Orange_Logo_hodhh6.png",
+        });
+      }
   
-  // Run the script with child process
-  spawn('node', [`./${scriptName}.ts`]);
+      async function post(
+        req: Request,
+        res: Response<MakeTransactionOutputData | ErrorOutput>
+      ) {
+        try {
+          const { account } = req.body as MakeTransactionInputData;
+          if (!account) {
+            res.status(40).json({ error: "No account provided" });
+            return;
+          }
+          console.log(account as string);
+  
+          const base64 = await mint(account, poap as PoapKeys);
+  
+          return res.status(200).json({
+            transaction: base64,
+            message: "powered by Zo World",
+          });
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ error: "error creating transaction" });
+          return;
+        }
+      }
+  
+      if (req.method === "GET") {
+        return get(res);
+      } else if (req.method === "POST") {
+        return await post(req, res);
+      } else {
+        return res.status(405).json({ error: "Method not allowed" });
+      }
+    }
+  );
 });
 
 app.use(express.json());
